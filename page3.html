@@ -1,42 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Form
- </title>
+    </title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgb(161, 146, 122);
+        }
+
+        .source {
+            background-color: navajowhite;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px;
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        .cause {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type=Name],
+        input[type=Email],
+        input[type=Password],
+        input[type=City],
+        input[type=Gender],
+        input[type=Hobbies],
+        input[type=submit],
+        select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            border-radius: 4px;
+            border: 0px solid rgb(112, 88, 52);
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(72, 41, 2);
+        }
+
+        button {
+            padding: 9px;
+            width: 500px;
+            background-color: blue;
+            color: rgb(219, 219, 222);
+            cursor: pointer;
+            max-width: 100%;
+            border-radius: 3px;
+            border: none;
+            font-style: normal;
+            font-size: medium;
+
+
+        }
+    </style>
+    <script>
+        function submitform() {
+            let isValid = true;
+            let name = document.getElementById("Name").value;
+            if (name == "") {
+                document.getElementById("nameError").innerText = "Name is Required!";
+                isValid = false;
+            }
+            else {
+                document.getElementById("nameError").innerText = "";
+            }
+            let email = document.getElementById("Email").value;
+            if (email == "") {
+                document.getElementById("emailError").innerText = "Valid Email is Required!";
+                isValid = false;
+            } else {
+                document.getElementById("emailError").innerText = "";
+            }
+            let password = document.getElementById("Password").value;
+            if (password == "") {
+                document.getElementById("passwordError").innerText = "Password length mimimun 8 character Required!";
+                isValid = false;
+            } 
+            let city = document.getElementById("City").value;
+            if (city == "") {
+                document.getElementById("cityError").innerText = "City name is required!";
+                isValid = false;
+            } else {
+                document.getElementById("cityError").innerText = "";
+            }
+            let gender = document.querySelectorAll("input[name='gender']:checked")
+            if (gender.length == 0) {
+                document.getElementById("genderError").innerText = "Select the gender!";
+                isValid = false;
+            } else {
+                document.getElementById("genderError").innerText = ""
+            }
+            let hobbies = document.querySelectorAll("input[name='hobbycheckbox']:checked")
+            if (hobbies.length == 0) {
+                document.getElementById("hobbyError").innerText = "Select the hobby!";
+                isValid = false;
+            } else {
+                document.getElementById("hobbyError").innerText = "";
+            }
+            if (isValid == true) {
+                alert("Hi " + name + " your form submitted successfully");
+                return true;
+            }
+            return false;
+        }
+    </script>
 </head>
-<body bgcolor="skyblue">
-    <h1 style="color:navy;">
-        Student Registration Form 
-    </h1>
-    <label style="color:navy;">Name:</label><br>
-    <input type="text" style="color:navy"><br>
-    <br>
-    <label style="color:navy;">Email:</label><br>
-    <input type="text"><br>
-    <br>
-    <label style="color:navy;">Password:</label><br> 
-    <input type="text"><br><br>
-    <label style="color:navy;">City:</label><br>
-    <input type="text"><br><br>
-    <label style="color:navy;">Gender</label><br>
-    <input type="checkbox">
-    <label style="color:navy;">Male</label><br>
-    <input type="checkbox">
-    <label style="color:navy;">Female</label><br>
-    <input type="checkbox">
-    <label style="color:navy;">Other</label><br><br>
-    <label style="color:navy;">Hobbies</label><br>
-    <input type="checkbox"><label style="color:navy;">Reading</label><br>
-    <input type="checkbox"><label style="color:navy;">Cooking</label><br>
-    <input type="checkbox"><label style="color:navy;">Painting</label><br>
-    <input type="checkbox"><label style="color:navy;">Gardening</label><br><br>
-    <button type="submit">Submit</button>
+
+<body>
+    <div class="source">
+        <h1>Student Registration</h1><br>
+        <form onsubmit="return submitform()">
+            <div class="cause">
+                <label>Name:</label><br>
+                <input id="Name" type="Name"><br>
+                <small id="nameError" style="color: brown;"></small>
+            </div>
+            <div class="cause">
+                <label>Email:</label><br>
+                <input id="Email" type="Email"><br>
+                <small id="emailError" style="color: brown;"></small>
+            </div>
+            <div class="cause">
+                <label>Password:</label><br>
+                <input id="Password" type="Password"><br>
+                <small id="passwordError" style="color: brown;"></small>
+            </div>
+            <div class="cause">
+                <label>City:</label><br>
+                <input id="City" type="City"><br>
+                <small id="cityError" style="color:brown;"></small>
+
+            </div>
+            <div class="cause">
+                <label>Gender</label><br>
+                <input id="male" name="gender" type="radio" value="male">
+                <label style="display: inline;">Male</label>
+                <div class="cause">
+                    <input id="Female" name="gender" type="radio" value="female">
+                    <label style="display: inline;">Female</label><br>
+                </div>
+                <small id="genderError" style="color: brown;"></small>
+            </div>
+            <label>Hobbies</label><br>
+            <div class="cause">
+                <input name="hobbycheckbox" type="checkbox">
+                <label style="display: inline;">Reading</label><br>
+                <input type="checkbox">
+                <label style="display: inline;">Cooking</label><br>
+                <input name="hobbycheckbox" name="hobbycheckbox" type="checkbox">
+                <label style="display: inline;">Painting</label><br>
+                <input name="hobbycheckbox" type="checkbox">
+                <label style="display: inline;">Gardening</label><br>
+                <small id="hobbyError" style="color: brown;"></small>
+            </div>
+            <div class="cause">
+                <button type="submit">Submit</button>
+            </div>
+    </div>
+    </form>
+    </div>
 
 
 
 
-    
+
+
+
 </body>
+
 </html>
